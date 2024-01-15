@@ -13,13 +13,10 @@ template<class T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, t
 
 #define ll long long
 #define ull unsigned long long
-#define endl '\n'
-#define YES cout << "YES" << endl
-#define NO cout << "NO" << endl
-#define clr(arr, x) (memset(arr, x, sizeof arr))
+#define YES cout << "YES" << '\n'
+#define NO cout << "NO" << '\n'
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
-#define vi vector<ll>
 const ll MOD = 1000000007;
 const ll inf = LONG_LONG_MAX;
 
@@ -40,7 +37,28 @@ void Fast() {
 }
 
 void solve(){
-   cout << "hello";
+    int t; cin >> t;
+    while(t--){
+        int n; cin >> n;
+        ll l = 0, r = INT_MAX;
+        vector<pair<int, ll>> v(n);
+        for(auto& i : v){
+            cin >> i.first >> i.second;
+            if(i.first == 1){
+                l = max(l, i.second);
+            }
+            else if(i.first == 2){
+                r = min(r, i.second);
+            }
+        }
+        int neg = 0, k = 0;
+        for(auto& i : v){
+            if(i.first == 3 && i.second >= l && i.second <= r){
+                neg++;
+            }
+        }
+        cout << max(0LL, r-l+1-neg) << '\n';
+    }
 }
 
 int main() {
