@@ -34,7 +34,7 @@ void Fast() {
 }
 
 void solve(){
-   cout << "hello";
+
 }
 
 int main() {
