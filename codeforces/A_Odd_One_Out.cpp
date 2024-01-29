@@ -1,3 +1,9 @@
+/*
+Problem Name : A. Odd One Out 
+Author: Abdalrahman Shaban
+Date: 26/01/2024 22:12:17
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
@@ -5,16 +11,15 @@ using namespace std;
 using namespace __gnu_pbds;
 template<class T> using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
-typedef long long ll;
-typedef unsigned long long ull;
-typedef vector<long long> vi;
-typedef vector<pair<ll, ll>> pi;
-
+#define ll long long
+#define ull unsigned long long
 #define endl '\n'
-#define YES cout << "YES\n"
-#define NO cout << "NO\n"
+#define YES cout << "YES" << endl
+#define NO cout << "NO" << endl
+#define clr(arr, x) (memset(arr, x, sizeof arr))
 #define all(x) x.begin(), x.end()
 #define allr(x) x.rbegin(), x.rend()
+#define vi vector<ll>
 const ll MOD = 1000000007;
 const ll inf = LONG_LONG_MAX;
 
@@ -35,7 +40,25 @@ void Fast() {
 }
 
 void solve(){
-
+    int t; cin >> t;
+    while(t--){
+        int arr[3];
+        for(int i = 0; i < 3; i++){
+            cin >> arr[i];
+        }
+        for(int i = 0 ;i < 3; i++){
+            bool ok = 0;
+            for(int j = 0; j < 3; j++){
+                if(arr[i] == arr[j] && i != j){
+                    ok = 1;
+                }
+            }
+            if(!ok){
+                cout << arr[i] << '\n';
+                break;
+            }
+        }
+    }
 }
 
 int main() {
