@@ -1,3 +1,9 @@
+/*
+Problem Name : C. XOR-distance 
+Author: Abdalrahman Shaban
+Date: 30/01/2024 20:20:37
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,8 +40,32 @@ void Fast() {
     cout.tie(nullptr);
 }
 
-void solve(){
 
+ll a, b, r;
+ll go(ll f){
+    ll df = abs(a-b);
+    ll temp = r;
+    ll x = a, y = b;
+    for(ll i = 62; i >= 0; i--){
+        ll tmp1 = x, tmp2 = y;
+        tmp1 = (tmp1 ^ (1LL<<i));
+        tmp2 = (tmp2 ^ (1LL<<i));
+        if((1LL<<i) <= temp && abs(x-y) > abs(tmp1-tmp2)){
+            if(f){f = 0; continue;}
+            x = tmp1;
+            y = tmp2;
+            temp -= (1LL<<i);
+        }
+    }
+    return abs(x-y);
+}
+
+void solve(){
+    int t; cin >> t;
+    while(t--){
+        cin >> a >> b >> r;
+        cout << min(go(0), go(1)) << endl;
+    }
 }
 
 int main() {

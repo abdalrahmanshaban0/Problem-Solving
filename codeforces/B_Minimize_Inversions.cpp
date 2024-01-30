@@ -1,3 +1,9 @@
+/*
+Problem Name : B. Minimize Inversions 
+Author: Abdalrahman Shaban
+Date: 30/01/2024 20:35:19
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,16 @@ void Fast() {
 }
 
 void solve(){
-
+    int t; cin >> t;
+    while(t--){
+        int n; cin >> n;
+        vector<pi> v(n);
+        for(auto& i : v) cin >> i.first;
+        for(auto& i : v) cin >> i.second;
+        sort(all(v));
+        for(auto& i : v) cout << i.first << ' '; cout << endl;
+        for(auto& i : v) cout << i.second << ' '; cout << endl;
+    }
 }
 
 int main() {

@@ -1,3 +1,9 @@
+/*
+Problem Name : A. Brick Wall 
+Author: Abdalrahman Shaban
+Date: 30/01/2024 20:33:44
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,12 @@ void Fast() {
 }
 
 void solve(){
-
+    int t; cin >> t;
+    while(t--){
+        ll a, b; cin >> a >> b;
+        if(b&1) b--;
+        cout << a*b/2 << endl;
+    }
 }
 
 int main() {
