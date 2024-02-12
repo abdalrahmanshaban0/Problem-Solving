@@ -1,3 +1,9 @@
+/*
+Problem Name : D. Towers 
+Author: Abdalrahman Shaban
+Date: 08/02/2024 18:51:00
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,29 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n; cin >> n;
+    ll arr[n];
+    multiset<ll> st;
+    for(int i = 0 ;i < n ; i++){
+        cin >> arr[i];
+    }
+    ll ans = 0;
+    for(int i = 0; i < n; i++){
+        auto it = st.upper_bound(arr[i]);
+        if(it == st.end()){
+            ans++;
+        }
+        else{
+            st.erase(it);
+        }
+        st.insert(arr[i]);
+    }
+    cout << ans;
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

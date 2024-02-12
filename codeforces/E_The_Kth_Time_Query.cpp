@@ -1,3 +1,9 @@
+/*
+Problem Name : E. The Kth Time Query 
+Author: Abdalrahman Shaban
+Date: 08/02/2024 17:33:05
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,29 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n , q; cin >> n >> q;
+    ll arr[n];
+    map<ll, int> mp;
+    map<pair<ll, int>, int> mpp;
+    for(int i = 0 ;i < n; i++){
+        cin >> arr[i];
+        mp[arr[i]]++;
+        mpp[{arr[i], mp[arr[i]]}] = i+1;
+    }
+    while(q--){
+        ll x; int k; cin >> x >> k;
+        if(!mpp[{x, k}]){
+            cout << -1 << endl;
+        }
+        else{
+            cout << mpp[{x, k}] << endl;
+        }
+    }
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

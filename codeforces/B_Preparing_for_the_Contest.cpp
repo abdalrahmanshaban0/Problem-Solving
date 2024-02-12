@@ -1,3 +1,9 @@
+/*
+Problem Name : B. Preparing for the Contest 
+Author: Abdalrahman Shaban
+Date: 11/02/2024 22:45:43
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,14 +41,21 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n, k; cin >> n >> k;
+    for(int i = 1; i <= k; i++){
+        cout << i << ' ';
+    }
+    for(int i = n; i > k; i--){
+        cout << i << " ";
+    }
+    cout << endl;
 }
 
 int main() {
     Fast();
     file();
     int t = 1;
-//    cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

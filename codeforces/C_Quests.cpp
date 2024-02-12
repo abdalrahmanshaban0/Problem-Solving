@@ -1,3 +1,9 @@
+/*
+Problem Name : C. Quests 
+Author: Abdalrahman Shaban
+Date: 11/02/2024 23:12:45
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,14 +41,31 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n, k; cin >> n >> k;
+    vector<pair<ll, ll>> v(n);
+    for(int i = 0 ;i < n; i++){
+        cin >> v[i].first;
+    }
+    for(int i = 0 ; i < n ;i++){
+        cin >> v[i].second;
+    }
+    ll sm = 0;
+    ll mx = 0;
+    ll ans = 0;
+    for(int i = 0; i < min(n, k); i++){
+        sm += v[i].first;
+        mx = max(mx, v[i].second);
+        ans = max(ans, sm + (k-i-1)*mx);
+    }
+    cout << ans << endl;
+
 }
 
 int main() {
     Fast();
     file();
     int t = 1;
-//    cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

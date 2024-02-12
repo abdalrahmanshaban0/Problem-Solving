@@ -1,3 +1,9 @@
+/*
+Problem Name : Increasing Subsequence 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 23:23:44
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,8 +40,43 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+int lis(vector<int> const& a) {
+    int n = a.size();
+    const int INF = 1e9;
+    vector<int> dp(n+1, INF);
+    dp[0] = -INF;
+
+    for (int i = 0; i < n; i++) {
+        int l = upper_bound(dp.begin(), dp.end(), a[i]) - dp.begin();
+        if (dp[l-1] < a[i] && a[i] < dp[l])
+            dp[l] = a[i];
+    }
+
+    int ans = 0;
+    for (int l = 0; l <= n; l++) {
+        if (dp[l] < INF)
+            ans = l;
+    }
+    return ans;
+}
+
 void solve(){
-    
+    int n; cin >> n;
+    vector<int> arr(n);
+    for(auto& i : arr) cin >> i;
+   // int dp[n];
+   // memset(dp, 0, sizeof(dp));
+   // int mx = 1;
+   // for(int i = 0; i < n; i++){
+   //     dp[i] = 1;
+   //     for(int j = 0; j < i; j++){
+   //         if(arr[j] < arr[i]){
+   //             dp[i] = max(dp[i], dp[j]+1);
+   //             mx = max(mx, dp[i]);
+   //         }
+   //     }
+   // }
+    cout << lis(arr);
 }
 
 int main() {

@@ -1,3 +1,9 @@
+/*
+Problem Name : B. Special number 
+Author: Abdalrahman Shaban
+Date: 08/02/2024 17:40:54
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,29 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n; cin >> n;
+    ll arr[n];
+    int frq[n];
+    for(int i = 0 ;i < n; i++){
+        cin >> arr[i];
+        frq[i] = arr[i] % 200;
+    }
+    map<ll, int> mp;
+    int chk[n];
+    ll ans = 0;
+    for(int i = 0 ;i < n ;i++){
+        mp[frq[i]]++;
+        chk[i] = mp[frq[i]];
+    }
+    for(int i = 0 ;i < n;i++){
+        ans += chk[i]-1;
+    }
+    cout << ans;
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

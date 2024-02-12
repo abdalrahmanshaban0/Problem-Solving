@@ -1,3 +1,9 @@
+/*
+Problem Name : A. Problemsolving Log 
+Author: Abdalrahman Shaban
+Date: 11/02/2024 22:35:05
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,14 +41,24 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n; cin >> n;
+    string s; cin >> s;
+    map<int, int> mp;
+    int ans = 0;
+    for(int i = 0; i < n; i++){
+        mp[s[i]-'A'+1]++;
+    } 
+    for(auto& i : mp){
+        if(i.first <= i.second)  ans++;
+    }
+    cout << ans << endl;
 }
 
 int main() {
     Fast();
     file();
     int t = 1;
-//    cin >> t;
+    cin >> t;
     while(t--){
         solve();
     }

@@ -1,3 +1,9 @@
+/*
+Problem Name : C. Mex 
+Author: Abdalrahman Shaban
+Date: 08/02/2024 17:28:12
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,17 +40,25 @@ void Fast() {
     cout.tie(nullptr);
 }
 
-void solve(){
-    
+void solve(){   
+    int n; cin >> n;
+    set<int> st;
+    for(int i = 0 ;i < n; i++){
+        int x; cin >> x;
+        st.insert(x);
+    }
+    for(int i = 0; i <= 2001; i++){
+        if(st.find(i) == st.end()){
+            cout << i;
+            return;
+        }
+    }
+
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

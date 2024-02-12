@@ -1,7 +1,7 @@
 /*
-Problem Name : B. Galactic War 
+Problem Name : 368. Largest Divisible Subset 
 Author: Abdalrahman Shaban
-Date: 05/02/2024 21:07:50
+Date: 09/02/2024 13:54:42
 */
 
 #include <bits/stdc++.h>
@@ -41,33 +41,41 @@ void Fast() {
 }
 
 
-void solve(){
-    int t; cin >> t;
-    while(t--){
-        int n, m; cin >> n >> m;
-        int a[n], b[m];
-        for(int i = 0;i < n; i++){
-            cin >> a[i];
-        }
-        for(int i = 0; i < m; i++){
-            cin >> b[i];
-        }
-        int it1 = 0, it2 = 0;
-        int ans = 0;
-        while(it1 < n && it2 < m){
-            bool ok = 0;
-            while(it1 < n && a[it1] <= b[it2]){
-                it1++;
-                ok = 1;
+class Solution {
+public:
+    vector<int> largestDivisibleSubset(vector<int>& v) {
+        int n = v.size();
+        sort(v.begin(), v.end());
+        int dp[n+1];
+        memset(dp, 1, sizeof(dp));
+        int mx = 1;
+        for(int i = 0; i < n; i++){
+            dp[i] = 1;
+            for(int j = 0; j < i; j++){
+                if(v[i] % v[j] == 0){
+                    dp[i] = max(dp[i], dp[j]+1);
+                    mx = max(mx, dp[i]);
+                }
             }
-            while(it2 < m && b[it2] <= a[it1]){
-                it2++;
-            }
-            if(ok) ans++;
         }
-        if(it1 < n) ans++;
-        cout << ans << endl;
+        int temp = -1;
+        vector<int> ans;
+        for(int i = n-1; i >= 0; i--){
+            if(dp[i] == mx && (temp == -1 || (temp % v[i] == 0))){
+                ans.push_back(v[i]);
+                temp = v[i];
+                mx--;
+            }
+        }
+        return ans;
     }
+};
+
+void solve(){
+    Solution obj;
+    vector<int> v = {1};
+    vector<int> ret = obj.largestDivisibleSubset(v);
+    for(auto& i : ret) cout << i << ' ';
 }
 
 int main() {

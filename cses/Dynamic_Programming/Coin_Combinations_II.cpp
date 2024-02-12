@@ -1,3 +1,9 @@
+/*
+Problem Name : Coin Combinations II 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 00:26:51
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,25 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n; ll x; cin >> n >> x;
+    ll cns[n];
+    for(int i = 0 ;i < n; i++) cin >> cns[i];
+    sort(cns, cns+n);
+    ll dp[x+1];
+    memset(dp, 0, sizeof(dp));
+    dp[0] = 1;
+    for(int i = 0; i < n; i++){
+        for(ll j = cns[i]; j <= x; j++){
+            dp[j] += dp[j-cns[i]];
+            dp[j] %= MOD;
+        }
+    }
+    cout << dp[x];
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

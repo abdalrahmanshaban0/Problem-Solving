@@ -1,3 +1,9 @@
+/*
+Problem Name : Book Shop 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 17:51:16
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,23 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n, x; cin >> n >> x;
+    int bprice[n], bpaper[n];
+    for(int i = 0 ;i < n; i++) cin >> bprice[i];
+    for(int i = 0 ;i < n; i++) cin >> bpaper[i];
+    int dp[2][x+1];
+    memset(dp, 0, sizeof(dp));
+    bool p = 0;
+    for(int j = 0 ;j < n; j++){
+        p = !p;
+        for(int i = 1; i <= x; i++){
+            dp[p][i] = dp[!p][i];
+            if(i >= bprice[j]){
+                dp[p][i] = max(dp[p][i], dp[!p][i-bprice[j]]+bpaper[j]);
+            }
+        }
+    }
+    cout << dp[p][x];
 }
 
 int main() {
@@ -44,7 +66,7 @@ int main() {
     int t = 1;
 //    cin >> t;
     while(t--){
-        solve();
+        solve() ;
     }
     return 0;
 }

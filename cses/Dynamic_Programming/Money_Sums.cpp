@@ -1,3 +1,9 @@
+/*
+Problem Name : Money Sums 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 22:10:26
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,8 +40,34 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+int n;
+set<int> ans;
+
+int dp[100][100000];
+int rec(int idx, int sm, int* arr){
+    if (idx == n){
+        if(sm)
+            ans.insert(sm);
+        return sm;
+    }
+    int& ret = dp[idx][sm];
+    if(~ret){
+        return ret;
+    }
+    ret = rec(idx+1, sm, arr);
+    ret = rec(idx+1, sm + arr[idx], arr);
+    return ret;
+}
 void solve(){
-    
+     cin >> n; 
+    int arr[n];
+    for(int i = 0 ;i< n; i++){
+        cin >> arr[i];
+    }
+    memset(dp, -1, sizeof(dp));
+    rec(0, 0, arr);
+    cout << ans.size() << endl;
+    for(auto& i  : ans) if(i) cout << i << ' ';
 }
 
 int main() {

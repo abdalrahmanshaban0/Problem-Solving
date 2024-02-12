@@ -1,3 +1,9 @@
+/*
+Problem Name : Removing Digits 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 16:00:52
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,17 +40,38 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+
+const int N = 1e6+1;
+int dp[N];
+
+int rec(int num){
+    if(num < 0){
+        return 1e9;
+    }
+    if(num == 0){
+        return 0;
+    }
+    int& ret = dp[num];
+    if(~ret) return ret;
+    ret = 1e9;
+    string s = to_string(num);
+    for(auto& c : s){
+        int dg = (int)(c - '0');
+        ret = min(ret, 1 + rec(num-dg));
+    }
+    return ret;
+}
+
+
 void solve(){
-    
+    int num; cin >> num;
+    memset(dp, -1, sizeof(dp));
+    cout << rec(num);
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

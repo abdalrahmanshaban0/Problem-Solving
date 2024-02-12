@@ -1,3 +1,9 @@
+/*
+Problem Name : Minimizing Coins 
+Author: Abdalrahman Shaban
+Date: 08/02/2024 23:58:40
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,29 @@ void Fast() {
 }
 
 void solve(){
-    
+    int n; ll x; cin >> n >> x;
+    ll coins[n];
+    for(int i = 0; i < n; i++){
+        cin >> coins[i];
+    }
+    const int N = 1e6+1;
+    ll dp[N] = {};
+    memset(dp, -1, sizeof(dp));
+    dp[0] = 0;
+    for(ll i = 1LL; i <= x; i++){
+        dp[i] = INT_MAX;
+        for(int j = 0; j < n; j++){
+            if(i >= coins[j]){
+                dp[i]= min(dp[i-coins[j]]+1, dp[i]);
+            }
+        }
+    }
+    cout << (dp[x] == INT_MAX ? -1 : dp[x]);
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

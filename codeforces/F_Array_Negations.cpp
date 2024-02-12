@@ -1,3 +1,9 @@
+/*
+Problem Name : F. Array Negations 
+Author: Abdalrahman Shaban
+Date: 08/02/2024 18:04:43
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,32 @@ void Fast() {
 }
 
 void solve(){
-    
+    int t; cin >> t;
+    while(t--){
+        int n , k; cin >> n >> k;
+        int arr[n];
+        for(int i = 0 ;i < n; i++){
+            cin >> arr[i];
+        }
+        sort(arr, arr+n);
+        int cnt = k;
+        for(int i = 0; i < min(n, k) && arr[i] < 0; i++){
+            arr[i] = -arr[i];
+            cnt--;
+        }
+        int sm = 0;
+        sort(arr, arr+n);
+        if(cnt&1) arr[0] = -arr[0];
+        for(int i = 0 ;i < n; i++){
+            sm += arr[i];
+        }
+        cout << sm << endl;
+    }
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

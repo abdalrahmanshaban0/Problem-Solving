@@ -1,3 +1,9 @@
+/*
+Problem Name : Two Sets II 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 22:25:06
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,8 +40,32 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+int n;
+int dp[500][250000];
+ll ans;
+ll sm;
+int rec(int idx, int sm1){
+    if(idx == n){
+        if(sm % 2 == 0 && sm1+idx == sm/2){
+            return 1;
+        }
+        return 0;
+    }
+    int& ret = dp[idx][sm1];
+    if(~ret) return ret;
+    ret = 0;
+    ret += rec(idx+1, sm1+idx);
+    ret %=MOD;
+    ret +=rec(idx+1, sm1);
+    ret %= MOD;
+    return ret;
+}
+
 void solve(){
-    
+    cin >> n;
+    sm = n*(n+1)/2;
+    memset(dp, -1, sizeof(dp));
+    cout << rec(1, 0);
 }
 
 int main() {

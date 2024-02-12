@@ -1,3 +1,9 @@
+/*
+Problem Name : Edit Distance 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 21:43:49
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -33,16 +39,44 @@ void Fast() {
     cin.tie(nullptr);
     cout.tie(nullptr);
 }
+string a, b;
+ll dp[5000][5000];
+ll rec(int i, int j){
+    if(i == 0 && j == 0){
+        if(a[i] == b[j])
+            return 0;
+        else
+            return 1;
+    }
+    if(i < 0){
+        return j+1;
+    }
+    if(j < 0){
+        return i+1;
+    }
+    ll& ret = dp[i][j];
+    if(~ret) return ret;
+    ret = INT_MAX;
 
+    if(a[i] != b[j]){
+        ret = min({rec(i-1, j)+1, rec(i, j-1)+1, rec(i-1, j-1)+1});
+    }
+    else{
+        ret = min(ret, rec(i-1, j-1));
+    }
+    return ret;
+}
 void solve(){
-    
+    cin >> a >> b;
+    memset(dp, -1, sizeof(dp));
+    cout << rec(a.size()-1, b.size()-1);
 }
 
 int main() {
     Fast();
     file();
     int t = 1;
-//    cin >> t;
+    //    cin >> t;
     while(t--){
         solve();
     }

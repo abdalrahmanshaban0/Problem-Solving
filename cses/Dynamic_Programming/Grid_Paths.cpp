@@ -1,3 +1,9 @@
+/*
+Problem Name : Grid Paths 
+Author: Abdalrahman Shaban
+Date: 09/02/2024 15:22:36
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,16 +41,38 @@ void Fast() {
 }
 
 void solve(){
+    int n; cin >> n;
+    char arr[n+1][n+1];
+    for(int i = 1 ;i <= n ;i++){
+        for(int j = 1; j <= n; j++){
+            cin >> arr[i][j];
+        }
+    }
     
+    int dp[n+1][n+1];
+    memset(dp, 0, sizeof(dp));
+    if(arr[n][n] != '*')
+        dp[n][n] = 1;
+
+    for(int i = n; i >= 1; i--){
+        for(int j = n; j >= 1; j--){
+            if(i == n && j == n) continue;
+            if(arr[i][j] != '*'){
+                if(i+1 <= n)
+                    dp[i][j] += dp[i+1][j];
+                if(j+1 <= n)
+                    dp[i][j] += dp[i][j+1];
+                dp[i][j] %= MOD;
+            }
+
+        }
+    }
+    cout << dp[1][1];
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-//    cin >> t;
-    while(t--){
-        solve();
-    }
+    solve() ;
     return 0;
 }

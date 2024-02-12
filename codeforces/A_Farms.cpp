@@ -1,7 +1,7 @@
 /*
-Problem Name : B. Galactic War 
+Problem Name : A. Farms 
 Author: Abdalrahman Shaban
-Date: 05/02/2024 21:07:50
+Date: 08/02/2024 18:16:40
 */
 
 #include <bits/stdc++.h>
@@ -41,33 +41,44 @@ void Fast() {
 }
 
 
-void solve(){
-    int t; cin >> t;
-    while(t--){
-        int n, m; cin >> n >> m;
-        int a[n], b[m];
-        for(int i = 0;i < n; i++){
-            cin >> a[i];
-        }
-        for(int i = 0; i < m; i++){
-            cin >> b[i];
-        }
-        int it1 = 0, it2 = 0;
-        int ans = 0;
-        while(it1 < n && it2 < m){
-            bool ok = 0;
-            while(it1 < n && a[it1] <= b[it2]){
-                it1++;
-                ok = 1;
-            }
-            while(it2 < m && b[it2] <= a[it1]){
-                it2++;
-            }
-            if(ok) ans++;
-        }
-        if(it1 < n) ans++;
-        cout << ans << endl;
+ll gtmxcoins(ll* arr, int n, ll& moment){
+    ll thds = 1LL;
+    ll timecost = 0;
+    ll coins = 0;
+    ll mx = moment * thds;
+    for(int i = 0; i < n; i++){
+        ll farmcost = max(0LL, arr[i]-coins);
+        ll mneeded = farmcost/thds + (farmcost%thds ? 1 : 0); //moments to by farm
+        coins += mneeded*thds - arr[i];
+        timecost += mneeded;
+        if(timecost >= moment) return mx;
+        thds++;
+        mx = max(mx, (moment-timecost)*thds+coins);
     }
+    return mx;
+}
+
+void solve(){
+    int n; ll m; cin >> n >> m;
+    ll arr[n];
+    for(int i = 0 ; i< n ;i++){
+        cin >> arr[i];
+    }
+    sort(arr, arr+n);
+    ll ans = m;
+    ll l = 0, r = m;
+    while(l <= r){
+        ll moment = (l+r)/2;
+        ll gained = gtmxcoins(arr, n, moment);
+        if(gained >= m){
+            ans = min(ans, moment);
+            r = moment - 1;
+        }
+        else{
+            l = moment + 1;
+        }
+    }
+    cout << ans;
 }
 
 int main() {
