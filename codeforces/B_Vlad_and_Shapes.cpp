@@ -1,3 +1,9 @@
+/*
+Problem Name : B. Vlad and Shapes 
+Author: Abdalrahman Shaban
+Date: 20/02/2024 14:06:18
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,8 +40,31 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+bool valid(int i, int j, int n){
+    return (i >= 0 && j >= 0 && i < n && j < n);
+}
+
 void solve(){
-     
+    int n; cin >> n;
+    char arr[n][n];
+    for(int i = 0 ;i < n ;i++){
+        for(int j = 0 ;j < n; j++){
+            cin >> arr[i][j];
+        }
+    }
+    bool tr = 0;
+    for(int i = 0 ;i < n ;i++){
+        for(int j = 0 ;j < n; j++){
+            if(arr[i][j] == '1'){
+                if(valid(i, j+1, n) && valid(i,j-1,n)){
+                    if(arr[i][j-1] == '0' && arr[i][j+1] == '0'){
+                        cout << "TRIANGLE\n"; return;
+                    }
+                }
+            }
+        }
+    }
+    cout << "SQUARE\n";
 }
 
 int main() {

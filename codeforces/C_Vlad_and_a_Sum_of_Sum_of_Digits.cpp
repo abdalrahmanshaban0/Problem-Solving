@@ -1,3 +1,9 @@
+/*
+Problem Name : C. Vlad and a Sum of Sum of Digits 
+Author: Abdalrahman Shaban
+Date: 20/02/2024 14:17:16
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,13 +40,34 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+
+ll smdg(ll n){
+    ll ret = 0;
+    while(n){
+        ret += n % 10;
+        n /= 10;
+    }
+    return ret;
+}
+const int N = 3e5;
+vector<ll> pre(N);
+
 void solve(){
-     
+    ll n; cin >> n;
+    cout << pre[n] << endl;
 }
 
 int main() {
     Fast();
     file();
+    
+    for(int i = 1; i < N; i++){
+        pre[i] = smdg(i);
+    }
+    for(int i = 2; i < N ; i++){
+        pre[i] += pre[i-1];
+    }
+
     int t = 1;
     cin >> t;
     while(t--){

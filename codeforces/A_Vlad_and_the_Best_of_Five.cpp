@@ -1,3 +1,9 @@
+/*
+Problem Name : A. Vlad and the Best of Five 
+Author: Abdalrahman Shaban
+Date: 20/02/2024 14:05:09
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,11 @@ void Fast() {
 }
 
 void solve(){
-     
+    string s; cin >> s;
+    int a = count(all(s), 'A');
+    int b = count(all(s), 'B');
+    if(a > b) cout << "A\n";
+    else cout << "B\n";
 }
 
 int main() {

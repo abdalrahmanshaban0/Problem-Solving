@@ -1,3 +1,9 @@
+/*
+Problem Name : D. Vlad and Division 
+Author: Abdalrahman Shaban
+Date: 20/02/2024 17:25:56
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,27 @@ void Fast() {
 }
 
 void solve(){
-     
+    int n; cin >> n;
+    ll arr[n];
+    map<int, int> mp;
+    for(int i = 0 ;i < n; i++){
+        cin >> arr[i];
+        mp[arr[i]]++;
+    } 
+    int cnt = 0;
+    for(int i = 0; i < n; i++){
+        if(mp[arr[i]]){
+            cnt++;
+            int temp = arr[i];
+            for(int j = 0; j < 31; j++){
+                temp ^= (1<<j);
+            }
+            if(mp[temp]) mp[temp]--;
+            mp[arr[i]]--;
+        }
+    }
+    cout << cnt << endl;
+
 }
 
 int main() {

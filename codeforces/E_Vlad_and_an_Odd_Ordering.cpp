@@ -1,3 +1,9 @@
+/*
+Problem Name : E. Vlad and an Odd Ordering 
+Author: Abdalrahman Shaban
+Date: 20/02/2024 21:18:42
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -34,8 +40,32 @@ void Fast() {
     cout.tie(nullptr);
 }
 
+vector<ll> pre;
+
 void solve(){
-     
+    ll n, k; cin >> n >> k; 
+    ll tmp = n;
+    ll p = 0;
+    while(tmp){
+        ll sz = (tmp+1)/2;
+        ll fst = (1<<p);
+        ll df = (1<<(p+1));
+        if(k > sz){
+            k -= sz;
+        }
+        else{ // non = fst + (it-1) * df
+            ll chk = (n - fst)/df + 1;
+            if(chk < k){
+                k -= chk;;
+            }
+            else{
+                ll non = fst + (k-1) * df;
+                cout << non << endl; return;
+            }
+        }
+        p++;
+    }
+
 }
 
 int main() {
