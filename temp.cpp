@@ -35,7 +35,7 @@ void Fast() {
 }
 
 void solve(){
-     
+    
 }
 
 int main() {
