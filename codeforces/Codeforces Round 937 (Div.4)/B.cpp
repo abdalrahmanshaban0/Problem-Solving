@@ -50,18 +50,14 @@ void solve(){
         else c = '.';
         char cc = c;
         for(int j = 1; j <= n; j++){            
-            for(int k = 0; k < 2; k++){
-                cout << cc;
-            }
+            cout << cc << cc;
             if(cc == '#') cc = '.';
             else cc = '#';
         }
         cout << endl;
         cc = c;
         for(int j = 1; j <= n; j++){            
-            for(int k = 0; k < 2; k++){
-                cout << cc;
-            }
+            cout << cc << cc;
             if(cc == '#') cc = '.';
             else cc = '#';
         }
