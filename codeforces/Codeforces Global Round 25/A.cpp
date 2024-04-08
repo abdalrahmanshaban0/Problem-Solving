@@ -1,3 +1,9 @@
+/*
+Problem Name : A 
+Author: Abdalrahman Shaban
+Date: 06/04/2024 16:36:06
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,20 @@ void Fast() {
 }
 
 void solve(){
-     
+    int n; cin >> n;
+    string s; cin >> s;
+    int ones = count(all(s), '1');
+    if(ones&1) NO;
+    else{
+        if(ones == 2){
+            for(int i = 0; i < n-1; i++){
+                if(s[i] == '1' && s[i+1] == '1'){
+                    NO; return;
+                }
+            }
+        }
+        YES;
+    }
 }
 
 int main() {

@@ -1,3 +1,9 @@
+/*
+Problem Name : B. Bessie and MEX 
+Author: Abdalrahman Shaban
+Date: 06/04/2024 11:38:10
+*/
+
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
@@ -35,7 +41,24 @@ void Fast() {
 }
 
 void solve(){
-     
+    set<int> st;
+    int n; cin >> n; 
+    for(int i = 0; i <= n; i++) st.insert(i);
+    int ans[n];
+    for(int i = 0; i < n ;i++){
+        int x; cin >> x;
+        if(x >= 1){
+            ans[i] = *st.begin();
+        }
+        else{
+            ans[i] = *st.begin()-x;
+        }
+        st.erase(ans[i]);
+    }
+    for(int i = 0; i < n; i++){
+        cout << ans[i] << ' ';
+    }
+    cout << endl;
 }
 
 int main() {
