@@ -1,7 +1,7 @@
 /*
 Problem Name : D 
 Author: Abdalrahman Shaban
-Date: 20/04/2024 14:23:12
+Date: 04/05/2024 15:57:09
 */
 
 #include <bits/stdc++.h>
@@ -45,33 +45,23 @@ void Fast() {
 //int dx[] = {0,0,1,-1,-1,-1,1,1};
 //int dy[] = {1,-1,0,0,1,-1,-1,-1};
 
-
-void dfs(vector<vector<int>>& adj, vector<bool>& vis, int nd, ll& nodes){
-    vis[nd] = 1;
-    nodes++;
-    for(auto& child : adj[nd]){
-        if(!vis[child]){
-            dfs(adj, vis, child, nodes);
-        }
-    }
-}
-
 void solve(){
-    int n, e; cin >> n >> e;
-    vector<vector<int>> adj(n+1);
-    for(int i = 0; i < e; i++){
-        int a, b; cin >> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
+    ll n, k; cin >> n >> k;
+    vector<pair<ll, ll>> v(n);
+    for(int i = 0 ;i < n ;i++){
+        cin >> v[i].first; v[i].second = i;
     }
-    vector<bool> vis(n+1);
-    ll ans = -e;
-    for(int i = 1; i <= n; i++){
-        if(!vis[i]){
-            ll nodes = 0;
-            dfs(adj, vis, i, nodes);
-            ans += (nodes*(nodes-1)/2);
-        }
+    sort(all(v));
+    set<ll> st;
+    for(int i = 0 ;i < k; i++){
+        st.insert(v[i].second);
+    }
+    ll ans = *st.rbegin()-*st.begin();
+    ll l = 0, r = k;
+    for(; r < n; r++){
+        st.erase(v[l++].second);
+        st.insert(v[r].second);
+        ans = min(ans, *st.rbegin()-*st.begin());
     }
     cout << ans ;
 }
@@ -79,9 +69,6 @@ void solve(){
 int main() {
     Fast();
     file();
-    int t = 1;
-    while(t--){
-        solve();
-    }
+    solve(); 
     return 0;
 }

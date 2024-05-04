@@ -1,7 +1,7 @@
 /*
-Problem Name : D 
+Problem Name : A 
 Author: Abdalrahman Shaban
-Date: 20/04/2024 14:23:12
+Date: 04/05/2024 14:59:16
 */
 
 #include <bits/stdc++.h>
@@ -45,43 +45,20 @@ void Fast() {
 //int dx[] = {0,0,1,-1,-1,-1,1,1};
 //int dy[] = {1,-1,0,0,1,-1,-1,-1};
 
-
-void dfs(vector<vector<int>>& adj, vector<bool>& vis, int nd, ll& nodes){
-    vis[nd] = 1;
-    nodes++;
-    for(auto& child : adj[nd]){
-        if(!vis[child]){
-            dfs(adj, vis, child, nodes);
-        }
-    }
-}
-
 void solve(){
-    int n, e; cin >> n >> e;
-    vector<vector<int>> adj(n+1);
-    for(int i = 0; i < e; i++){
-        int a, b; cin >> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
+    int n, x, y, z; cin >> n >> x >> y >> z;
+    if(x > y) swap(x, y);
+    if(z >= x && z <= y){
+        cout << "Yes";
     }
-    vector<bool> vis(n+1);
-    ll ans = -e;
-    for(int i = 1; i <= n; i++){
-        if(!vis[i]){
-            ll nodes = 0;
-            dfs(adj, vis, i, nodes);
-            ans += (nodes*(nodes-1)/2);
-        }
+    else{
+        cout << "No";
     }
-    cout << ans ;
 }
 
 int main() {
     Fast();
     file();
-    int t = 1;
-    while(t--){
-        solve();
-    }
+    solve(); 
     return 0;
 }
