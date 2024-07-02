@@ -1,9 +1,3 @@
-/*
-Problem Name : Flight Discount 
-Author: Abdalrahman Shaban
-Date: 02/07/2024 22:27:47
-*/
-
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 using namespace std;
