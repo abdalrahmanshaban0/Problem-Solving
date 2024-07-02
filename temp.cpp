@@ -75,9 +75,9 @@ struct TreeNode{
     TreeNode(int v, TreeNode* l, TreeNode* r) : val(v), left(l), right(r) { }
 };
 struct edge{
-	int from, to, w; //from, if you want to backtrack the path
-	edge(int t, int we) : to(t), w(we) { }
-	edge(int f, int t, int we) : from(f), to(t), w(we) { }
+	int from, to; ll w; //from, if you want to backtrack the path
+	edge(int t, ll we) : to(t), w(we) { }
+	edge(int f, int t, ll we) : from(f), to(t), w(we) { }
 	bool operator < (const edge& obj) const {
 		return(w > obj.w);  //return greater to make the smaller is the top
 	}
@@ -101,7 +101,7 @@ void Fast() {
 
 
 void solve(){
-    
+     
 }
 
 int main() {
