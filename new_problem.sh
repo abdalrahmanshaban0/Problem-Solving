@@ -6,10 +6,11 @@ touch "$FName.cpp"
 printf "/*\nProblem Name : $PName \nAuthor: Abdalrahman Shaban\nDate: $dt\n*/\n\n" > "$FName.cpp"
 
 #for linux 
-#cat ~/Documents/Problem-Solving/temp.cpp >> "$FName.cpp"
+cat ~/git/Problem-Solving/temp.cpp >> "$FName.cpp"
 
 #for wsl
-cat /mnt/c/Users/Abdalrahman/Documents/GitHub/Problem-Solving/temp.cpp >> "$FName.cpp"
-dos2unix "$FName.cpp"
+#cat ~/git/Problem-Solving/temp.cpp >> "$FName.cpp"
+#dos2unix "$FName.cpp"
 
-vim "$FName.cpp"
+#if you're using neovim (remove the n if not)
+nvim "$FName.cpp"
