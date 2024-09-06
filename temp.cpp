@@ -2,31 +2,20 @@
 using namespace std;
 
 typedef long long ll;
-#define all(s) s.begin(),s.end()
-
-void file(); 
+#define all(s) s.begin(), s.end()
 void Fast();
 
-void solve(){
-     
-}
+void solve() {}
 
 int main() {
-    Fast();
-    file();
-    solve(); 
+  Fast();
+  solve();
 
-    return 0;
+  return 0;
 }
 
-
-void file() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-#endif
-}
 void Fast() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
 }
