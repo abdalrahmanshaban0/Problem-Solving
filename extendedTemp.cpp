@@ -51,6 +51,9 @@ struct edge {
 };
 
 // functions
+template <typename... Args> void print(Args... args) {
+  (cout << ... << args) << '\n';
+}
 ll gcd(ll a, ll b) { return a ? gcd(b % a, a) : b; }
 ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
 ll nCr(ll n, ll r) {
@@ -149,8 +152,8 @@ void Fast() {
   cout.tie(NULL);
 }
 
-int dx[] = {0, 0, 1,-1, -1,-1, 1, 1};
-int dy[] = {1,-1, 0, 0,  1,-1,-1,-1};
+int dx[] = {0, 0, 1, -1, -1, -1, 1, 1};
+int dy[] = {1, -1, 0, 0, 1, -1, -1, -1};
 
 void solve() {}
 
